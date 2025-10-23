@@ -11,7 +11,12 @@ def QUOTE(ticker):
     r = robin.get_latest_price(ticker)
     print(ticker.upper() + ": $" + str(r[0]))
 
-TICKER = sys.argv[1:][0].upper()
-QUOTE(TICKER)
+def BUY(ticker, amt):
+    r = robin.order_buy_fractional_by_price(ticker, amt)
+    print(r)
+
+def SELL(ticker, amt):
+    r = robin.order_sell_fractional_by_price(ticker, amt)
+    print(r)
 
 #logout = robin.robinhood.authentication.logout()
