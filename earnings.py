@@ -1,7 +1,7 @@
 import datetime
 import yfinance as yf
 
-#from robin import BUY
+from robin import BUY, QUOTE, SELL
 
 # watchlist
 TICKERS = ["AAPL", "MSFT", "NVDA", "AMZN", "BX", "INTC", "PG", "SNY"]
@@ -9,10 +9,6 @@ BUY_AMOUNT = 25.00
 DAYS_BEFORE = 1
 
 print('             today is', datetime.date.today())
-
-# f*ck slippage - manav porwal
-market_price = r.stocks.get_latest_price(symbol)[0]
-limit_price = float(market_price) * 1.01
 
 def next_earnings(ticker):
     t = yf.Ticker(ticker)
@@ -37,8 +33,7 @@ def main():
 
         if d == target_date:
             print(f"bought ${BUY_AMOUNT} of {ticker}")
-            # uncomment after funding account
-            # BUY(ticker, BUY_AMOUNT)
+            BUY(ticker, BUY_AMOUNT)
         else:
             print(f"{ticker}: skipping - next earnings on {d}")
 
